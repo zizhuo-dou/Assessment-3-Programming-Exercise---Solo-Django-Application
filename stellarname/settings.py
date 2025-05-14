@@ -11,6 +11,7 @@ ALLOWED_HOSTS = [
     'yesnice-windowhistory-8000.codio-box.uk',
     '127.0.0.1',
     'localhost',
+    'zizhuodou11.pythonanywhere.com',
 ]
 
 # Application definition
