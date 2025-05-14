@@ -3,17 +3,25 @@ from django.core.management.base import BaseCommand
 from catalog.models import Star
 
 class Command(BaseCommand):
-    help = 'Load stars from hipparcos_sample.csv'
+    help = 'Load up to 3000 stars from hipparcos_sample.csv'
 
     def handle(self, *args, **kwargs):
-        with open('hipparcos_sample.csv', newline='') as f:
-            reader = csv.DictReader(f)
+        with open('hipparcos_sample.csv', newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
             for row in reader:
-                Star.objects.get_or_create(
+                if count >= 3000:
+                    break
+                Star.objects.create(
                     name=row['name'],
                     constellation=row['constellation'],
-                    magnitude=row['magnitude'],
-                    ra=row['ra'],
-                    dec=row['dec']
+                    magnitude=float(row['magnitude']),
+                    ra=float(row['ra']),
+                    dec=float(row['dec'])
                 )
-        self.stdout.write(self.style.SUCCESS('Star data imported successfully.'))
+                count += 1
+
+        self.stdout.write(self.style.SUCCESS(f'Successfully loaded {count} stars.'))
+
+
+

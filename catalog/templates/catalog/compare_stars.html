@@ -1,0 +1,37 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<h2 class="mb-4">Compare Stars</h2>
+
+{% if star1 and star2 %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="card border-primary mb-4">
+      <div class="card-header bg-primary text-white">Star #1: {{ star1.name }}</div>
+      <div class="card-body">
+        <p><strong>Constellation:</strong> {{ star1.constellation }}</p>
+        <p><strong>Magnitude:</strong> {{ star1.magnitude }}</p>
+        <p><strong>Right Ascension:</strong> {{ star1.ra }}</p>
+        <p><strong>Declination:</strong> {{ star1.dec }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card border-success mb-4">
+      <div class="card-header bg-success text-white">Star #2: {{ star2.name }}</div>
+      <div class="card-body">
+        <p><strong>Constellation:</strong> {{ star2.constellation }}</p>
+        <p><strong>Magnitude:</strong> {{ star2.magnitude }}</p>
+        <p><strong>Right Ascension:</strong> {{ star2.ra }}</p>
+        <p><strong>Declination:</strong> {{ star2.dec }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+  <div class="alert alert-warning">Invalid comparison. Please select exactly two stars.</div>
+{% endif %}
+
+<a href="{% url 'star_list' %}" class="btn btn-secondary">← Back to Catalog</a>
+{% endblock %}
+

@@ -11,5 +11,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('admin-orders/', views.admin_orders, name='admin_orders'),
     path('register/', views.register, name='register'),
+    path('compare/', views.compare_stars, name='compare_stars'),
+    path('favorites/', views.my_favorites, name='my_favorites'),
+    path('favorites/toggle/<int:star_id>/', views.toggle_favorite, name='toggle_favorite'),
+
 ]
 

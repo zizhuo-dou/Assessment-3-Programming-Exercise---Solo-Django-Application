@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<h2 class="mb-4">⭐ My Favorite Stars</h2>
+
+{% if favorites %}
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for fav in favorites %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ fav.star.name }}</h5>
+            <p>Constellation: {{ fav.star.constellation }}</p>
+            <p>Magnitude: {{ fav.star.magnitude }}</p>
+            <a href="{% url 'star_detail' fav.star.id %}" class="btn btn-sm btn-outline-secondary">View</a>
+            <a href="{% url 'toggle_favorite' fav.star.id %}" class="btn btn-sm btn-danger">Remove ❤️</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-muted">You haven’t favorited any stars yet.</p>
+{% endif %}
+{% endblock %}

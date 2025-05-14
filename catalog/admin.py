@@ -1,5 +1,8 @@
 from django.contrib import admin
 from .models import Star, Order, UserProfile
+from .models import StarComment
+
+admin.site.register(StarComment)
 
 @admin.register(Star)
 class StarAdmin(admin.ModelAdmin):
