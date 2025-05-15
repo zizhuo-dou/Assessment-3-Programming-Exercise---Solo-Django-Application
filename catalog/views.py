@@ -20,15 +20,15 @@ def star_list(request):
 
     stars = Star.objects.all().order_by('id')
 
-    # 搜索关键词
+    
     if query:
         stars = stars.filter(name__icontains=query) | stars.filter(constellation__icontains=query)
 
-    # 星座筛选
+    
     if constellation_filter:
         stars = stars.filter(constellation=constellation_filter)
 
-    # 价格筛选（根据 magnitude 映射）
+    
     if price_filter == 'high':
         stars = stars.filter(magnitude__lte=1.5)
     elif price_filter == 'mid':
@@ -36,7 +36,7 @@ def star_list(request):
     elif price_filter == 'low':
         stars = stars.filter(magnitude__gt=3.5)
 
-    # 获取所有唯一星座用于下拉框
+    
     constellations = Star.objects.values_list('constellation', flat=True).distinct().order_by('constellation')
 
     confirmed_orders = Order.objects.filter(status='confirmed')

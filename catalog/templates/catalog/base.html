@@ -29,12 +29,7 @@
               <span class="navbar-text text-white me-3">Hello, {{ user.username }}!</span>
             </li>
             <li class="nav-item">
-              <!-- <a class="nav-link" href="{% url 'logout' %}">Logout</a> -->
-
-              <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-              </form>
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
           {% else %}
             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">User Login</a></li>
